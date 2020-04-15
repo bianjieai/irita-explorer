@@ -38,7 +38,7 @@
 							</el-tooltip>
 						</template>
 					</el-table-column>
-					<el-table-column label="Chain ID" prop="description"></el-table-column>
+					<el-table-column label="Description" prop="description"></el-table-column>
 					<el-table-column label="Status" prop="status"></el-table-column>
 				</el-table>
 			</div>
