@@ -25,8 +25,11 @@
 						<p class="home_content_header_bottom_footer">{{validatorNumber}}</p>
 					</li>
 					<li class="home_content_header_bottom_item_content">
-						<p class="home_content_header_bottom_title"><i class="iconfont iconUsers"></i>Users</p>
-						<p class="home_content_header_bottom_footer">--</p>
+						<p class="home_content_header_bottom_title"><i class="iconfont iconservice"></i>Services</p>
+						<p class="home_content_header_bottom_footer">
+							<router-link v-if="serverNumber" :to="`/services`">{{serverNumber}}</router-link>
+							<span v-else >--</span>
+						</p>
 					</li>
 					<li class="home_content_header_bottom_item_content">
 						<p class="home_content_header_bottom_title"><i class="iconfont iconAssets"></i>Assets</p>
@@ -106,6 +109,7 @@
 				validatorNumber: 0,
 				userNumber: 0,
 				assetsNumber: 0,
+				serverNumber:0,
 				syncTimer:null,
 				latestBlockArray:[],
 				latestTransaction:[],
@@ -146,6 +150,7 @@
 							this.transactionTime = Tools.formatUtc(res.block_time);
 							this.ageTime = this.componentAgeTime(res.block_time,res.diffBlockTime);
 							this.assetsNumber = res.asset_number;
+							this.serverNumber = res.server_number;
 						}
 					}catch (e) {
 					

@@ -13,6 +13,7 @@ router.get('/',(req,res,next) => {
 				block_time: null,
 				totals_txs: 0,
 				address_number: 0,
+				server_number: 0,
 				validator_number:0,
 				asset_number: 0,
 				diffBlockTime:0
@@ -55,6 +56,12 @@ router.get('/',(req,res,next) => {
 										if (err) throw err;
 										if (result) {
 											responseData.totals_txs = result;
+										}
+									});
+									iritaExplorerDb.collection('service_tx').find().count((err,result) => {
+										if (err) throw err;
+										if(result) {
+											responseData.server_number = result
 										}
 									});
 									iritaExplorerDb.collection('asset_list').find({}).count((err,result) => {

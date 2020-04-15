@@ -179,18 +179,18 @@
 						</div>
 						<div v-if="txType === 'create_record'" class="record_container">
 							<div class="record_content">
-								<span class="record_name">Contents：</span>
+								<p class="record_name">Contents：</p>
 								<div class="record_list_content">
 									<el-table :data="recordArray">
-										<el-table-column label="digest" prop="digest"></el-table-column>
-										<el-table-column label="digest_algo Type" width="150px" prop="digest_algo"></el-table-column>
+										<el-table-column label="digest" prop="digest" width="300px"></el-table-column>
+										<el-table-column label="digest algo" width="150px" prop="digest_algo"></el-table-column>
 										<el-table-column label="uri" prop="uri">
 											<template slot-scope="scope">
 												<a v-if="scope.row.uri && scope.row.uri !== '--'" :download="scope.row.uri" :href="scope.row.uri" target="_blank">{{scope.row.uri}}</a>
 												<span v-else>--</span>
 											</template>
 										</el-table-column>
-										<el-table-column label="meta" width="100px" prop="meta"></el-table-column>
+										<el-table-column label="meta" width="200px" prop="meta"></el-table-column>
 									</el-table>
 								</div>
 							</div>
@@ -404,7 +404,6 @@
 							width: 100%;
 							max-width: 12rem;
 							.record_content{
-								display: flex;
 								width: 100%;
 								.record_name{
 									color: #787C99;
@@ -416,7 +415,6 @@
 									flex: 1;
 									width: 100%;
 									box-sizing: border-box;
-									padding: 0.2rem;
 									background: #F8F8F8;
 									border-radius: 0.05rem;
 									/deep/ .el-table{

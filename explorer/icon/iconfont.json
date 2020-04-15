@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "13491806",
+      "name": "service",
+      "font_class": "service",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "12636853",
+      "name": "Users",
+      "font_class": "Users",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "12636854",
+      "name": "Assets",
+      "font_class": "Assets",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
       "icon_id": "10124735",
       "name": "下拉选择箭头",
       "font_class": "xialaxuanzejiantou",
@@ -81,20 +102,6 @@
       "font_class": "riqixuanze",
       "unicode": "e62f",
       "unicode_decimal": 58927
-    },
-    {
-      "icon_id": "12636853",
-      "name": "Users",
-      "font_class": "Users",
-      "unicode": "e653",
-      "unicode_decimal": 58963
-    },
-    {
-      "icon_id": "12636854",
-      "name": "Assets",
-      "font_class": "Assets",
-      "unicode": "e654",
-      "unicode_decimal": 58964
     }
   ]
 }
