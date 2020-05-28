@@ -154,6 +154,7 @@
 	.header_container{
 		background: #3264FD;
 		position: fixed;
+		top:0;
 		width: 100%;
 		z-index: 10;
 		height: 0.6rem;

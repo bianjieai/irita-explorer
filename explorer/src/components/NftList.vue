@@ -9,7 +9,7 @@
 							   :label="item.label"
 							   :value="item.value"></el-option>
 				</el-select>
-				<el-input v-model="input" placeholder="Search by Owner / TokenID"></el-input>
+				<el-input v-model="input" placeholder="Search by Owner"></el-input>
 				<div class="tx_type_mobile_content">
 					<div class="search_btn" @click="getNftsByFilter">Search</div>
 					<div class="reset_btn" @click="resetFilterCondition"><i class="iconfont iconzhongzhi"></i></div>
@@ -32,14 +32,14 @@
 							<router-link :to="`/nft/token?denom=${scope.row.denom}&&tokenId=${scope.row.tokenId}`">{{scope.row.denom}}</router-link>
 						</template>
 					</el-table-column>
-					<el-table-column label="Token ID" width="300px">
+				<!--	<el-table-column label="Token ID" width="300px">
 						<template slot-scope="scope">
 							<router-link :to="`/nft/token?denom=${scope.row.denom}&&tokenId=${scope.row.tokenId}`">{{scope.row.tokenId}}</router-link>
 						</template>
-					</el-table-column>
+					</el-table-column>-->
 					<el-table-column label="URI" prop="token_uri">
 						<template slot-scope="scope">
-							<a v-if="scope.row.tokenUri" :download="scope.row.tokenUri" :href="scope.row.tokenUri" target="_blank">{{scope.row.tokenUri}}</a>
+							<a v-if="scope.row.schema" :download="scope.row.schema" :href="scope.row.schema" target="_blank">{{scope.row.schema}}</a>
 							<span v-else>--</span>
 						</template>
 					</el-table-column>
@@ -122,13 +122,23 @@
 						denom: this.denom === 'All' ? '' : this.denom,
 						pageNum: this.currentPageNum,
 						pageSize: this.pageSize,
-						tokenId: this.tokenId,
 						owner: this.owner,
 					}},(res) => {
 					try {
 						if(res){
+							res.data.forEach(item => {
+								if(item.tokenUri.includes('$schema')){
+									item.schema = JSON.parse(item.tokenUri).$id
+								}else {
+									item.schema =  item.tokenUri
+								}
+								
+							})
 							this.allCount = res.count
 							this.denomArray = res.data;
+						}else {
+							this.allCount = 0
+							this.denomArray = []
 						}
 					}catch (e) {
 						console.error(e)

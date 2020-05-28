@@ -90,18 +90,20 @@
 						pageSize: this.pageSize
 					}},(res) => {
 					try {
-						if(res){
-							this.validatorList = res.result.map((item,index) => {
+						if(res.length > 0){
+							this.validatorList = res[0].result.map((item,index) => {
 								return {
 									index:index + 1,
-									moniker: item.description.moniker,
-									operator: item.operator_address,
-									website: item.description.website ? item.description.website : '--',
-									identity: item.description.identity ? item.description.identity : '--',
-									detail: item.description.detail ? item.description.detail : '--',
+									// moniker: item.description.moniker,
+									operator: item.validators[0].address,
+									// website: item.description.website ? item.description.website : '--',
+									// identity: item.description.identity ? item.description.identity : '--',
+									// detail: item.description.detail ? item.description.detail : '--',
 								}
 							})
 							
+						}else {
+							this.validatorList = []
 						}
 					}catch (e) {
 						console.error(e)

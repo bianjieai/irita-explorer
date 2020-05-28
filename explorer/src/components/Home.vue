@@ -118,12 +118,12 @@
 			}
 		},
 		mounted () {
-			this.getNavigation();
+			// this.getNavigation();
 			this.getLastBlocks();
 			this.getTransaction();
 			clearInterval(this.syncTimer )
 			this.syncTimer = setInterval(() => {
-				this.getNavigation();
+				// this.getNavigation();
 				this.getLastBlocks();
 				this.getTransaction();
 			},5000)
