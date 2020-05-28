@@ -1,9 +1,24 @@
-var mongoUrl = require('../config/index')
-var express = require('express');
-var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
+const express = require('express');
+const router = express.Router();
+const txDocument = require('../schema/tx');
 router.get('/',(req,res,next) => {
-	MongoClient.connect(mongoUrl.mongoUrl,{ useUnifiedTopology: true,useNewUrlParser : true },(err,db) => {
+	let Data = null;
+	txDocument.find({tx_hash:req.query.txhash}).then(result => {
+		Data = {
+			txHash: result[0].tx_hash,
+			block_height: result[0].height,
+			status : result[0].status === 1 ? 'success' : 'fail',
+			timestamp : new Date(result[0].time).toISOString(),
+			signer : result[0].signer,
+			memo : result[0].memo,
+			msgs : result[0].msgs,
+		}
+		res.send(Data)
+	}).catch(err => {
+		res.send(JSON.stringify(err))
+	})
+	
+	/*MongoClient.connect(mongoUrl.mongoUrl,{ useUnifiedTopology: true,useNewUrlParser : true },(err,db) => {
 		if(err) throw err;
 		let iritaExplorerDb = db.db('irita-explorer');
 		let Data = null;
@@ -28,7 +43,7 @@ router.get('/',(req,res,next) => {
 			res.send(Data);
 			db.close();
 		})
-	})
+	})*/
 	
 })
 

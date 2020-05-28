@@ -1,11 +1,22 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../config/index');
-var request = require('request');
+const express = require('express');
+const router = express.Router();
+const nftMode = require('../schema/nft');
 
 router.get('/',(req,res,next) => {
-	let getOwnerAddressUrl = `${config.lcdAddress}/nft/owner/${req.query.owner}`;
-	request(getOwnerAddressUrl,(error,response,body) => {
+	// let getOwnerAddressUrl = `${config.lcdAddress}/nft/nfts/owner/${req.query.owner}`;
+	nftMode.find({creator:req.query.owner}).then(result => {
+		let resArray = result.map( item  => {
+			return {
+				name: item.name,
+				JSONSchema: item.JSONSchema,
+				creator: item.creator
+			}
+		})
+		res.send(resArray)
+	}).catch(error => {
+		res.send(error)
+	})
+	/*request(getOwnerAddressUrl,(error,response,body) => {
 		if(error){
 			throw error
 		}else {
@@ -16,7 +27,7 @@ router.get('/',(req,res,next) => {
 				}
 			}
 		}
-	})
+	})*/
 })
 
 module.exports = router;

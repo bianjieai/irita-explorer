@@ -1,20 +1,23 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../config/index');
-var request = require('request');
+const express = require('express');
+const router = express.Router();
+const validatorModel = require('../schema/validator');
+
 
 
 router.get('/',(req,res,next) => {
-	let lcdValidatorListUrl = `${config.lcdAddress}/staking/validators?status=${req.query.status}&page=${req.query.page}&limit=${req.query.size}`;
-	request(lcdValidatorListUrl,(error,response,body) => {
-		if(error) {
-			throw error
-		}else {
-			if(response){
-				res.send(JSON.parse(body))
-			}
-		}
-		
+	// status=${req.query.status}&page=${req.query.page}&limit=${req.query.size}
+	let sqFind = {}
+	if(req.query.status === 'bound'){
+		sqFind.status = 2
+	}else if(req.query.status === 'unbonding'){
+		sqFind.status = 1
+	}else if(req.query.status === 'unbonded') {
+		sqFind.status = 0
+	}
+	validatorModel.find(sqFind).skip((Number(req.query.page) - 1)*Number(req.query.size)).limit(Number(req.query.size)).then(result => {
+		res.send(result)
+	}).catch(err => {
+		res.send(err)
 	})
 });
 

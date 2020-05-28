@@ -1,25 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../config/index');
-var request = require('request');
+const express = require('express');
+const router = express.Router();
+const nftMode = require('../schema/nft');
 
 router.get('/',(req,res,next) => {
-	let nftListUrl = `${config.lcdAddress}/nft/denoms`
-	request(nftListUrl,(error,response,body) => {
-		if(error){
-			throw error
-		}else {
-			if(body){
-				let resData = JSON.parse(body);
-				if(resData.result){
-					res.send(resData.result)
-					
-				}
-			}
-		}
+	nftMode.aggregate([{"$group":{_id:{name:'$name'}}}]).then(result => {
+		let denomArr = [];
+		result.forEach(item => {
+			denomArr.unshift(item['_id'].name)
+		});
+		res.send(denomArr)
+	}).catch(err => {
+		res.send(err)
 	})
+	
 })
-
-
-
 module.exports = router;
