@@ -13,7 +13,7 @@
     "bignumber.js": "^9.0.0",
     "clipboard": "^2.0.4",
     "core-js": "^3.4.3",
-    "echarts": "^4.9.0",
+    "echarts": "^5.0.2",
     "element-ui": "^2.13.0",
     "moment": "^2.26.0",
     "move-decimal-point": "0.0.4",
