@@ -43,5 +43,5 @@ proxy: {
 
 |  name   | example  |  note  |
 |  ----  | ----  |   ----  | 
-| VUE_APP_COSMOS_XP_ADDRESS  | https://cosmoshub.iobscan.io |  cosmos单链浏览器地址 |
+| VUE_APP_COSMOS_XP_ADDRESS  | https://qa.cosmosplorer.bianjie.ai |  cosmos单链浏览器地址 |
 | ...  | ... |  ... |
