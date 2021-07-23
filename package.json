@@ -21,7 +21,7 @@
     "js-md5": "^0.7.3",
     "moment": "^2.26.0",
     "move-decimal-point": "0.0.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^6.0.1",
     "sass-loader": "^8.0.0",
     "scss": "^0.2.4",
     "url-search-params": "1.1.0",
