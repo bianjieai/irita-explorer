@@ -16,7 +16,7 @@
     "bignumber.js": "^9.0.0",
     "clipboard": "^2.0.4",
     "core-js": "^3.4.3",
-    "echarts": "^4.1.0",
+    "echarts": "^5.1.2",
     "element-ui": "^2.13.0",
     "js-md5": "^0.7.3",
     "moment": "^2.26.0",
